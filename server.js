@@ -13,6 +13,21 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+// 根路径
+app.get('/', (req, res) => {
+  res.json({
+    message: '煤矿安全培训答题练习小程序后端 API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      register: 'POST /api/auth/register',
+      login: 'POST /api/auth/login',
+      quiz: '/api/quiz',
+      user: '/api/user'
+    }
+  })
+})
+
 // 日志中间件
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`)
